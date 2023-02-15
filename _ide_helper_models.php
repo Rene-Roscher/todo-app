@@ -12,6 +12,37 @@
 
 namespace App\Models{
 /**
+ * App\Models\Category
+ *
+ * @property int $id
+ * @property string $user_id
+ * @property string $name
+ * @property string $color
+ * @property string|null $icon_path
+ * @property int $order
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Category newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Category newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Category query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Model search($search, $threshold = null, $entireText = false, $entireTextOnly = false)
+ * @method static \Illuminate\Database\Eloquent\Builder|Model searchPagination($search, $limit = 25, $visible = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Model searchRestricted($search, $restriction, $threshold = null, $entireText = false, $entireTextOnly = false)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereIconPath($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereUserId($value)
+ * @mixin \Eloquent
+ */
+	class IdeHelperCategory {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Model
  *
  * @method static \Illuminate\Database\Eloquent\Builder|Model newModelQuery()
@@ -34,11 +65,11 @@ namespace App\Models{
  * @property string $guard_name
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|Permission[] $permissions
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Permission> $permissions
  * @property-read int|null $permissions_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Role[] $roles
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Role> $roles
  * @property-read int|null $roles_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
  * @property-read int|null $users_count
  * @method static \Illuminate\Database\Eloquent\Builder|Permission newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Permission newQuery()
@@ -64,9 +95,9 @@ namespace App\Models{
  * @property string $guard_name
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Permission[] $permissions
+ * @property \Illuminate\Database\Eloquent\Collection<int, \App\Models\Permission> $permissions
  * @property-read int|null $permissions_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
  * @property-read int|null $users_count
  * @method static \Illuminate\Database\Eloquent\Builder|Role newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Role newQuery()
@@ -83,6 +114,43 @@ namespace App\Models{
  * @mixin \Eloquent
  */
 	class IdeHelperRole {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Todo
+ *
+ * @property int $id
+ * @property string $user_id
+ * @property int $category_id
+ * @property string $title
+ * @property string $text
+ * @property bool $completed
+ * @property int $order
+ * @property string|null $completed_at
+ * @property string|null $due_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Todo newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Todo newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Todo query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Model search($search, $threshold = null, $entireText = false, $entireTextOnly = false)
+ * @method static \Illuminate\Database\Eloquent\Builder|Model searchPagination($search, $limit = 25, $visible = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Model searchRestricted($search, $restriction, $threshold = null, $entireText = false, $entireTextOnly = false)
+ * @method static \Illuminate\Database\Eloquent\Builder|Todo whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Todo whereCompleted($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Todo whereCompletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Todo whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Todo whereDueAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Todo whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Todo whereOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Todo whereText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Todo whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Todo whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Todo whereUserId($value)
+ * @mixin \Eloquent
+ */
+	class IdeHelperTodo {}
 }
 
 namespace App\Models{
@@ -111,15 +179,15 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read string $profile_photo_url
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
- * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Permission[] $permissions
+ * @property \Illuminate\Database\Eloquent\Collection<int, \App\Models\Permission> $permissions
  * @property-read int|null $permissions_count
- * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Role[] $roles
+ * @property \Illuminate\Database\Eloquent\Collection<int, \App\Models\Role> $roles
  * @property-read int|null $roles_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
- * @method static \Database\Factories\UserFactory factory(...$parameters)
+ * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User permission($permissions)
