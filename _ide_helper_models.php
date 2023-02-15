@@ -22,6 +22,9 @@ namespace App\Models{
  * @property int $order
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read string $media_icon_url
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Todo> $todos
+ * @property-read int|null $todos_count
  * @method static \Illuminate\Database\Eloquent\Builder|Category newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Category newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Category query()
@@ -127,10 +130,12 @@ namespace App\Models{
  * @property string $text
  * @property bool $completed
  * @property int $order
- * @property string|null $completed_at
- * @property string|null $due_at
+ * @property \Illuminate\Support\Carbon|null $completed_at
+ * @property \Illuminate\Support\Carbon|null $due_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Category $category
+ * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|Todo newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Todo newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Todo query()
@@ -178,6 +183,7 @@ namespace App\Models{
  * @property string|null $profile_photo_path
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Category|null $categories
  * @property-read string $profile_photo_url
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
@@ -185,6 +191,7 @@ namespace App\Models{
  * @property-read int|null $permissions_count
  * @property \Illuminate\Database\Eloquent\Collection<int, \App\Models\Role> $roles
  * @property-read int|null $roles_count
+ * @property-read \App\Models\Todo|null $todos
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])

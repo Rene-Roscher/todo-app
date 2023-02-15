@@ -1,5 +1,7 @@
 <?php
 
+use App\Actions\Todo\ShowTodoListAction;
+use App\Exceptions\ViewException;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -16,6 +18,12 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
+
+    $categories = user()->categories()->paginate(10);
+
+    return \App\Data\Collection\CategoryListData::collection($categories);
+
+    die('test');
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
@@ -29,12 +37,10 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', ShowTodoListAction::class)->name('dashboard');
 });
 
 
 Route::get('debug', function () {
-    return throw new \App\Exceptions\ViewException('This is a test exception', 'Test Exception');
+    return throw new ViewException('This is a test exception', 'Test Exception');
 })->name('debug');

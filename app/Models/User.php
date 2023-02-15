@@ -86,4 +86,14 @@ class User extends Authenticatable /*implements MustVerifyEmail*/
         'profile_photo_url',
     ];
 
+    public function todos()
+    {
+        return $this->hasMany(Todo::class);
+    }
+
+    public function categories()
+    {
+        return $this->hasMany(Category::class)->with('todos');
+    }
+
 }
