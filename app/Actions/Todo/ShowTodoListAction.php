@@ -13,9 +13,9 @@ class ShowTodoListAction
     public function handle()
     {
         return Inertia::render('Dashboard', [
-            'todos' => dd(CategoryListData::optional(
-                user()->load('categories.todos')->categories
-            )),
+            'categories' => CategoryListData::collection(
+                user()->categories()->paginate(10)
+            ),
         ]);
     }
 

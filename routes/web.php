@@ -1,5 +1,6 @@
 <?php
 
+use App\Actions\Todo\AddTodoEntryAction;
 use App\Actions\Todo\ShowTodoListAction;
 use App\Exceptions\ViewException;
 use Illuminate\Foundation\Application;
@@ -18,12 +19,11 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-
-    $categories = user()->categories()->paginate(10);
-
-    return \App\Data\Collection\CategoryListData::collection($categories);
-
-    die('test');
+//    $categories = user()->categories()->paginate(10);
+//
+//    return \App\Data\Collection\CategoryListData::collection($categories);
+//
+//    die('test');
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
@@ -38,6 +38,9 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', ShowTodoListAction::class)->name('dashboard');
+    Route::prefix('{category}')->name('category.')->group(function () {
+        Route::post('create-todo', AddTodoEntryAction::class)->name('add-todo-entry');
+    });
 });
 
 

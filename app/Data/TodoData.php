@@ -9,11 +9,11 @@ class TodoData extends Data
 {
     public function __construct(
         public string $title,
-        public string $text,
+        public ?string $text,
         public int $order,
         public ?CarbonImmutable $due_at,
         public bool $completed,
-        public string $completed_at,
+        public ?string $completed_at,
         public string $category_id,
     ) {}
 }

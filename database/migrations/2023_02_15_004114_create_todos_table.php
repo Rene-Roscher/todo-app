@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\User::class)->constrained();
-            $table->foreignIdFor(\App\Models\Category::class)->constrained();
+            $table->foreignIdFor(\App\Models\User::class)->nullable();
+            $table->foreignIdFor(\App\Models\Category::class)->nullable();
             $table->string('title');
-            $table->longText('text');
+            $table->longText('text')->nullable();
             $table->boolean('completed')->default(false);
             $table->integer('order')->default(0);
             $table->timestamp('completed_at')->nullable();

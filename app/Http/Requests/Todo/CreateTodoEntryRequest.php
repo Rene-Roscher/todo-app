@@ -27,7 +27,6 @@ class CreateTodoEntryRequest extends FormRequest
             'title' => 'required|string|max:255',
             'text' => 'nullable|string',
             'due_at' => 'nullable|date',
-            'category_id' => 'required|string|exists:categories,id',
         ];
     }
 }

@@ -10,6 +10,7 @@ use Spatie\LaravelData\DataCollection;
 class CategoryListData extends Data
 {
     public function __construct(
+        public string $id,
         public string $name,
         public string $color,
         public ?string $icon_path,

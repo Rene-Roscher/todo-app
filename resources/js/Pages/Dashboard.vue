@@ -1,15 +1,17 @@
-<script setup>
-import {reactive, ref} from 'vue';
+<script lang="ts" setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import Welcome from '@/Components/Welcome.vue';
+import {PropType, defineComponent, h} from "vue";
+import CategoryItem from "../ts/CategoryItem";
+import Pagination from "../ts/Pagination";
+import SecondaryButton from "../Components/SecondaryButton.vue";
+import Category from "../Misc/Todo/Category.vue";
 
-// Only for testing locales
-import { loadLanguageAsync } from 'laravel-vue-i18n';
-const locale = ref('en');
+defineProps({
+  categories: Object as PropType<Pagination<CategoryItem>>,
+})
 
-const changeLocale = (lang) => {
-  loadLanguageAsync(lang);
-  locale.value = lang;
+const createCategory = () => {
+  console.log('create category');
 }
 
 </script>
@@ -17,25 +19,36 @@ const changeLocale = (lang) => {
 <template>
   <AppLayout title="Dashboard">
     <template #header>
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        Dashboard
-      </h2>
+      <div class="flex items-center justify-between">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+          Dashboard
+        </h2>
+
+        <div>
+          <secondary-button size="sm">
+            Create Category
+          </secondary-button>
+        </div>
+      </div>
     </template>
 
     <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-4">
-        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-          <div class="flex justify-end space-x-2 items-center px-4 py-2">
-            <button @click="changeLocale('en')" :class="{'active': locale === 'en'}">EN</button>
-            <button @click="changeLocale('de')" :class="{'active': locale === 'de'}">DE</button>
+        <div class="bg-white overflow-hidden shadow sm:rounded-lg">
+
+          <!-- Input Create Category -->
+
+          <!-- Category-List --->
+          <div class="overflow-hidden bg-white shadow sm:rounded-md">
+            <ul role="list" class="divide-y divide-gray-200">
+
+              <li v-for="category in categories.data" :key="category.id">
+                <category v-for="category in categories.data" :category="category" :key="category.id"/>
+              </li>
+
+            </ul>
           </div>
-          <hr class="border border-gray-50">
-          <div class="w-full p-4">
-            {{ __('Taylor Otwell is an American software engineer and entrepreneur, best known as the creator of the Laravel PHP framework. He has been involved in web development since the early 2000s and has been a significant contributor to the PHP community. In addition to Laravel, he has also created a number of other popular open-source projects and tools, including Forge, Envoyer, and Spark. Otwell is widely regarded as one of the leading figures in the PHP community, and he continues to be active in the development of Laravel and other projects.') }}
-          </div>
-        </div>
-        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-          <Welcome/>
+
         </div>
       </div>
     </div>
