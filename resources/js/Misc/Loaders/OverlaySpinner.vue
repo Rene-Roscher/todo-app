@@ -24,7 +24,7 @@ export default {
   computed: {
     style() {
       return {
-        background: `rgba(0, 0, 0, ${this.backgroundOpacity || 0.45})`
+        background: `rgba(0, 0, 0, ${this.backgroundOpacity || 0.3})`
       }
     }
   }

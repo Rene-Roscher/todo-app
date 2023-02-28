@@ -34,13 +34,13 @@ const createCategory = () => {
 
     <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-4">
-        <div class="bg-white overflow-hidden shadow sm:rounded-lg">
+        <div class="">
 
           <!-- Input Create Category -->
 
           <!-- Category-List --->
-          <div class="overflow-hidden bg-white shadow sm:rounded-md">
-            <ul role="list" class="divide-y divide-gray-200">
+          <div>
+            <ul role="list">
 
               <li v-for="category in categories.data" :key="category.id">
                 <category v-for="category in categories.data" :category="category" :key="category.id"/>

@@ -7,7 +7,7 @@ export default interface TodoItem {
     completed: boolean
     order: number
     completed_at: string
-    due_date: string
+    due_at: string
     created_at: string
     updated_at: string
 }

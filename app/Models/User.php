@@ -93,7 +93,7 @@ class User extends Authenticatable /*implements MustVerifyEmail*/
 
     public function categories()
     {
-        return $this->hasMany(Category::class)->with('todos');
+        return $this->hasMany(Category::class);
     }
 
 }

@@ -10,9 +10,13 @@ import base from './base';
 
 // Plugins
 import {i18nVue} from "laravel-vue-i18n";
+import { SetupCalendar, Calendar, DatePicker } from 'v-calendar';
 
 // Misc
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
+
+// Styles
+import 'v-calendar/dist/style.css';
 
 // Initialize Inertia App
 createInertiaApp({
@@ -29,10 +33,13 @@ createInertiaApp({
                     return await languageFiles[`../../lang/${lang}.json`]();
                 }
             })
+            .use(SetupCalendar, {})
             /* Mixins */
             .mixin(base)
             /* Components */
             .component('inertia-link', Link)
+            .component('Calendar', Calendar)
+            .component('DatePicker', DatePicker)
             /* Mountpoint */
             .mount(el);
     },

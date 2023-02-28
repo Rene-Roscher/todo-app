@@ -5,6 +5,7 @@ import CategoryItem from "../../ts/CategoryItem";
 import Todo from "./Todo.vue";
 import TextInput from "../../Components/TextInput.vue";
 import {useForm} from "@inertiajs/vue3";
+import TextareaInput from "../TextareaInput.vue";
 
 const props = defineProps({
   category: Object as PropType<CategoryItem>
@@ -49,35 +50,38 @@ const arrowCircleIcon = defineComponent({
 </script>
 
 <template>
-  <div class="block divide-y divide-gray-200">
+  <div class="block">
     <!-- Head of Category -->
-    <div class="px-4 py-4 sm:px-6">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center space-x-4">
-          <component :is="arrowCircleIcon" class="h-5 w-5 text-gray-400"/>
-          <p class="truncate text-base font-semibold text-gray-900">
+    <div class="">
+      <div class="flex items-center space-x-2.5">
+        <div class="flex items-center space-x-0.5">
+<!--          <component :is="arrowCircleIcon" class="h-5 w-5 text-gray-400"/>-->
+          <p class="truncate text-xl font-semibold text-gray-900 tracking-wide">
             {{ category.name }}
           </p>
         </div>
-        <div class="ml-2 flex flex-shrink-0">
-          <p
-              class="inline-flex rounded-full bg-green-500/75 px-2 text-xs font-semibold leading-5 text-white"
-              :class="{'bg-amber-500': countOpenTodosInCategory(category) > 0}"
-          >
-            {{ countOpenTodosInCategory(category) }}
-          </p>
-        </div>
+<!--        <div class="ml-2 flex flex-shrink-0">-->
+<!--          <p-->
+<!--              class="inline-flex rounded-full bg-green-500/75 px-2 text-xs font-semibold leading-5 text-white"-->
+<!--              :class="{'bg-amber-500': countOpenTodosInCategory(category) > 0}"-->
+<!--          >-->
+<!--            {{ countOpenTodosInCategory(category) }}-->
+<!--          </p>-->
+<!--        </div>-->
       </div>
     </div>
+  </div>
+
+  <div class="p-2">
     <!-- Content of Category -->
-    <div class="px-4 py-4 sm:px-6">
-      <div class="flex flex-col space-y-4">
+    <div>
+      <div class="flex flex-col space-y-2">
         <!-- List of all Todos -->
-        <todo v-for="todo in category.todos" :todo="todo" :key="todo.id"/>
+        <todo class="px-4 py-2 rounded-lg bg-white" v-for="todo in category.todos" :todo="todo" :key="todo.id"/>
       </div>
     </div>
-    <div class="border-t px-6 py-4">
-      <text-input class="w-full border" :class="{'opacity-75': createTodoForm.processing}" v-model="createTodoForm.title" @keyup.enter="submitTodoForm" placeholder="Typing the next todo..." :disabled="createTodoForm.processing"/>
+    <div class="py-2">
+      <textarea-input :category="category"/>
     </div>
   </div>
 </template>

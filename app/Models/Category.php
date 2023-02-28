@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use App\Traits\HasMedia;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Collection;
 use Kra8\Snowflake\HasShortflakePrimary;
 
 /**
@@ -16,6 +18,10 @@ class Category extends Model
 
     protected $fillable = [
         'name', 'user_id', 'color', 'icon_path', 'order',
+    ];
+
+    protected $with = [
+        'todos',
     ];
 
     protected $appends = [
@@ -42,7 +48,9 @@ class Category extends Model
 
     public function todos(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Todo::class);
+        return $this->hasMany(Todo::class)
+            ->orderBy('completed')
+            ->orderBy('due_at');
     }
 
 }

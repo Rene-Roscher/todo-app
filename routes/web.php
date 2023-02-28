@@ -2,6 +2,7 @@
 
 use App\Actions\Todo\AddTodoEntryAction;
 use App\Actions\Todo\ShowTodoListAction;
+use App\Actions\Todo\UpdateTodoEntryAction;
 use App\Exceptions\ViewException;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -41,9 +42,7 @@ Route::middleware([
     Route::prefix('{category}')->name('category.')->group(function () {
         Route::post('create-todo', AddTodoEntryAction::class)->name('add-todo-entry');
     });
+    Route::prefix('{todo}')->name('todo.')->group(function () {
+        Route::post('update', UpdateTodoEntryAction::class)->name('update-todo-entry');
+    });
 });
-
-
-Route::get('debug', function () {
-    return throw new ViewException('This is a test exception', 'Test Exception');
-})->name('debug');
